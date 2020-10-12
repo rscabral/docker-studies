@@ -1,2 +1,2 @@
 # docker-studies
-Docker Study
+Docker Study - *All study annotations are in my Evernote*
