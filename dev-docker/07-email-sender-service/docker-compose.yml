@@ -43,17 +43,19 @@ services:
       - queue
     depends_on: 
       - mydbserver
+    environment: 
+      - DB_NAME=email_sender_test_override
   queue:
     image: redis:3.2
     networks: 
       - queue
   worker:
-    image: python:3.6
+    build: worker
     volumes: 
       # Worker
       - ./worker:/worker
     working_dir: /worker
-    command: bash ./app.sh
+    command: worker.py
     networks: 
       - queue
     depends_on: 
