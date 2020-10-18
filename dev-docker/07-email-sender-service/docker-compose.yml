@@ -1,6 +1,9 @@
 version: '3'
 volumes: 
   data:
+networks: 
+  db:
+  web:
 services: 
   mydbserver:
     image: postgres:9.6
@@ -12,6 +15,8 @@ services:
       # Scripts
       - ./scripts:/scripts
       - ./scripts/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks: 
+      - db
   frontend:
     image: nginx:1.13
     volumes: 
@@ -31,3 +36,8 @@ services:
       - ./backend:/backend
     working_dir: /backend
     command: bash ./app.sh
+    networks: 
+      - db
+      - web
+    depends_on: 
+      - mydbserver
