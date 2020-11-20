@@ -19,7 +19,7 @@ services:
     networks: 
       - db
   frontend:
-    image: nginx:1.13
+    image: nginx:1.18
     volumes: 
       # Site
       - ./frontend:/usr/share/nginx/html/
